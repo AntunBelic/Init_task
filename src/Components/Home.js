@@ -1,8 +1,21 @@
-import React from 'react'
+import { Navigate,useNavigate} from 'react-router-dom';
+import { useAuth } from './Auth'
 
 function Home() {
+    const auth = useAuth();
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        auth.logout()
+        navigate("/login")
+    }
+    const authToken = JSON.parse(localStorage.getItem("token"))
+
+
   return (
-    <div>Home</div>
+    <div>
+        <h1>{auth?.data?.user?.firstName}{" "}{auth?.data?.user?.lastName}</h1>
+        <button onClick={()=>handleLogout()}>Logout</button>
+    </div>
   )
 }
 
