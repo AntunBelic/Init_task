@@ -1,8 +1,22 @@
 import {useState,useEffect,createContext,useContext} from "react"
 
-const AuthContext = createContext(null)
+export const AuthContext = createContext(null)
 
 export const AuthProvider = ({children}) =>{
+
+    //login state
+    const [form,setForm] = useState({
+        email:"",
+        pwd:""
+    })
+
+    useEffect(()=>{
+        console.log(form)
+    },[form])
+
+    
+
+    //user state
     const [user,setUser]= useState(null)
 
     const login = (user) => {
@@ -14,7 +28,7 @@ export const AuthProvider = ({children}) =>{
     }
 
     return (
-        <AuthContext.Provider value ={{user,login,logout}}>
+        <AuthContext.Provider value ={{user,login,logout,setForm,form}}>
             {children}
         </AuthContext.Provider>
     )
