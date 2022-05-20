@@ -10,8 +10,8 @@ function Login() {
     const handleForm = (email,pwd,e) =>{
         e.preventDefault();
         auth.setForm({
-            email:email,
-            pwd:pwd
+            username:email,
+            password:pwd
         })
     }
 
