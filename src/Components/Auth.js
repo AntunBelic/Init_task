@@ -1,6 +1,6 @@
-import {useState,useEffect,createContext,useContext} from "react"
+import {useState,createContext,useContext} from "react"
 import axios from "axios"
-import { Navigate, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export const AuthContext = createContext(null)
 
@@ -21,21 +21,7 @@ export const AuthProvider = ({children}) =>{
     const [pwd,setPwd] = useState("")
 
 
-    useEffect(()=>{
-        let credentials = JSON.parse(localStorage.getItem("credentials"))
-        axios
-            .post(API_URL,credentials)
-            .then((response) => {
-                setData(response.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-        }
-    ,[])
+    
 
     const handleForm = (email,pwd,e) =>{
         e.preventDefault();
@@ -74,7 +60,7 @@ export const AuthProvider = ({children}) =>{
     }
 
     return (
-        <AuthContext.Provider value ={{user,login,logout,data,handleForm,email,setEmail,pwd,setPwd}}>
+        <AuthContext.Provider value ={{user,login,logout,data,handleForm,email,setEmail,pwd,setPwd,setData,setLoading,setError}}>
             {children}
         </AuthContext.Provider>
     )
