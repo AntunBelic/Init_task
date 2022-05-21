@@ -1,31 +1,28 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "./Auth";
 import { useEffect } from "react";
 import axios from "axios";
+import { useAuth } from "./Auth";
 
-const API_URL = "https://api.getcountapp.com/api/v1/authenticate"
+const API_URL = "https://api.getcountapp.com/api/v1/users/me"
 
 export const RequireAuth = ({children}) =>{
-    const auth = useAuth()
+    
+    const {setData} = useAuth();
 
     useEffect(()=>{
-        let credentials = JSON.parse(localStorage.getItem("credentials"))
+        let credentials = JSON.parse(localStorage.getItem("token"))
+        const AuthStr = 'Bearer '.concat(credentials)
+
         axios
-            .post(API_URL,credentials)
+            .get(API_URL,{ headers: { Authorization: AuthStr } })
             .then((response) => {
-                auth.setData(response.data);
+                setData(response.data);
             })
             .catch((err) => {
                 console.log(err);
             })
-            .finally(() => {
-                auth.setLoading(false);
-                if(!auth.data){
-                    return <Navigate to="/login" />
-                }
-            });
         }
-    ,[])
+    ,[setData])
 
     if(!JSON.parse(localStorage.getItem("token"))){
         return <Navigate to="/login" />
@@ -33,3 +30,6 @@ export const RequireAuth = ({children}) =>{
 
     return children
 }
+
+
+//john@doe.com

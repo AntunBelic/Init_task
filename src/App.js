@@ -9,12 +9,15 @@ function App() {
   return (
     <AuthProvider>
       <Routes>  
-        <Route path='/' element={
-          <RequireAuth>
-              <Home/>
-          </RequireAuth>
-          } />
-        
+        <Route 
+          path='/' 
+          element=
+            {
+              <RequireAuth>
+                <Home/>
+              </RequireAuth>
+            } 
+        />
         <Route path='/login' element={<Login/>} />
       </Routes>
     </AuthProvider>

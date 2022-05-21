@@ -1,66 +1,42 @@
 import {useState,createContext,useContext} from "react"
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
 
 export const AuthContext = createContext(null)
 
 const API_URL = "https://api.getcountapp.com/api/v1/authenticate"
 
-export const AuthProvider = ({children}) =>{
-    //login state
-
-    let form = {}
-    
-    const navigate = useNavigate()
-
+export const AuthProvider = ({children}) =>{  
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
     const [email,setEmail] = useState("")
     const [pwd,setPwd] = useState("")
 
-
-    
-
-    const handleForm = (email,pwd,e) =>{
-        e.preventDefault();
-        form = {
-            username:email,
-            password:pwd
-        }
+    const login = () =>{
             setLoading(true);
-        axios
-            .post(API_URL,form)
+        return axios
+            .post(API_URL,{
+                username:email,
+                password:pwd
+            })
             .then((response) => {
-                setData(response.data);
                 localStorage.setItem("token",JSON.stringify(response.data.token))
-                localStorage.setItem("credentials",JSON.stringify(form))
-                navigate("/")
             })
             .catch((err) => {
-                console.log(err);
+                setError(err);
             })
             .finally(() => {
                 setLoading(false);
             });
         }
-        console.log(data)
-
-    //user state
-    const [user,setUser]= useState(null)
-
-    const login = (user) => {
-        setUser(user)
-    }
 
     const logout = () => {
-        setData(null);
+        setData(null)
         localStorage.clear()
     }
 
     return (
-        <AuthContext.Provider value ={{user,login,logout,data,handleForm,email,setEmail,pwd,setPwd,setData,setLoading,setError}}>
+        <AuthContext.Provider value ={{login,logout,data,email,setEmail,pwd,setPwd,setData,error,loading}}>
             {children}
         </AuthContext.Provider>
     )
