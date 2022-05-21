@@ -10,7 +10,7 @@ function Login() {
         e.preventDefault();
         login()
         .then(()=>{setEmail("");setPwd("")})
-        .then(()=>(navigate("/")))       
+        .then(()=>(navigate("/")))    
     }
 
     return (

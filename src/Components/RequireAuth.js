@@ -12,7 +12,7 @@ export const RequireAuth = ({children}) =>{
 
     useEffect(()=>{
         let credentials = JSON.parse(localStorage.getItem("token"))
-        const AuthStr = 'Bearer'.concat(credentials)
+        const AuthStr = 'Bearer '.concat(credentials)
 
         if(credentials){
             axios
