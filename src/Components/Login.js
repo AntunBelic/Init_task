@@ -24,7 +24,7 @@ function Login() {
             </label>
             <label className="login_label">
                 Password:
-                <input type="text" className="login_input" onChange={(e)=>setPwd(e.target.value)} value={pwd} required />
+                <input type="password" className="login_input" onChange={(e)=>setPwd(e.target.value)} value={pwd} required />
             </label>
             {!loading?
             <button className="login_btn"><span className="login_btn_text">Submit</span></button>
