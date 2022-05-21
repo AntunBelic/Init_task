@@ -23,7 +23,7 @@ export const AuthProvider = ({children}) =>{
                 localStorage.setItem("token",JSON.stringify(response.data.token))
             })
             .catch((err) => {
-                setError(err);
+                setError(err.response.data.errorMessage);
             })
             .finally(() => {
                 setLoading(false);

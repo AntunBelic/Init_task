@@ -1,3 +1,89 @@
+.login_container{
+    min-height: 320px;
+    width: 400px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 16px;
+    box-shadow: 5px 5px 30px #000000;
+    margin:auto;
+    margin-top: 30px;
+    padding: 20px 40px;
+    background-color: #7e7e7e;
+}
+
+.login_form{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.login_title{
+    color:rgba(255, 255, 255, 0.795);
+    margin-bottom: 18px;
+    font-size: 40px;
+    font-family: "Livvic",sans-serif;
+}
+
+.login_err_msg{
+    font-family: "Livvic",sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(194, 2, 2, 0.822);
+}
+
+.login_label{
+    color:rgb(0, 0, 0);
+    margin-bottom: 12px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 15px;
+    font-family: "Livvic",sans-serif;
+}
+
+.login_input{
+    color:black;
+    outline: none;
+    background-color: transparent;
+    border:none;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    width: 100%;
+    font-size: 22px;
+    padding: 5px 15px;
+    font-family: "Livvic",sans-serif;
+}
+
+.login_btn_text{
+    color:rgba(255, 255, 255, 0.795);
+    font-size: 20px;
+    font-weight: 700;
+    font-family: "Livvic",sans-serif;
+}
+
+.login_btn{
+    background-color:rgba(174, 37, 179, 0.76);
+    height: 40px;
+    width: 100%;
+    border-radius:32px;
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: 1px 1px 4px #000000;
+    font-family: "Livvic",sans-serif;
+}
+
+.login_btn:hover{
+    background-color:rgba(142, 33, 146, 0.644);
+}
+
+.login_btn:active{
+    background-color:rgba(99, 14, 102, 0.712);
+}
+
+
+/*loader animation*/
+
 .ball1,
 .ball2,
 .ball3 {
@@ -9,7 +95,7 @@
 }
 
 .ball1 {
-    background-color: #99abb1;
+    background-color: #ffffff;
     -webkit-animation: single1ball1anim 2s infinite linear;
     animation: single1ball1anim 2s infinite linear;
 }
@@ -51,7 +137,7 @@
 }
 
 .ball2 {
-    background-color: #6a7477;
+    background-color: #7e7e7e;
     -webkit-animation: single1ball2anim 2s infinite linear;
     animation: single1ball2anim 2s infinite linear;
 }
@@ -97,7 +183,7 @@
 }
 
 .ball3 {
-    background-color: #2b373a;
+    background-color: #000000;
     -webkit-animation: single1ball3anim 2s infinite linear;
     animation: single1ball3anim 2s infinite linear;
 }
