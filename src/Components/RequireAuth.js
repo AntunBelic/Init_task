@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate} from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "./Auth";
@@ -9,6 +9,7 @@ export const RequireAuth = ({children}) =>{
     
     const {setData,setLoading} = useAuth();
     const navigate = useNavigate();
+
 
     useEffect(()=>{
         let credentials = JSON.parse(localStorage.getItem("token"))

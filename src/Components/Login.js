@@ -1,5 +1,5 @@
 import "../CSS/Login.css"
-import { useNavigate } from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import { useAuth } from "./Auth"
 
 function Login() {
@@ -10,8 +10,10 @@ function Login() {
         e.preventDefault();
         login()
         .then(()=>{setEmail("");setPwd("")})
-        .then(()=>(navigate("/")))    
+        .then(()=>(navigate("/", { replace: true })))    
     }
+
+    
 
     return (
     <div className="login_container">
