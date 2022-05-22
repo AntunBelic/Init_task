@@ -1,5 +1,5 @@
 import { Navigate, useNavigate} from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect,useRef } from "react";
 import axios from "axios";
 import { useAuth } from "./Auth";
 
@@ -10,12 +10,13 @@ export const RequireAuth = ({children}) =>{
     const {setData,setLoading} = useAuth();
     const navigate = useNavigate();
 
+    const initialRender = useRef(false)
 
     useEffect(()=>{
         let credentials = JSON.parse(localStorage.getItem("token"))
         const AuthStr = 'Bearer '.concat(credentials)
         
-        if(credentials){
+        if(initialRender.current){
             setLoading(true)
             axios
             .get(API_URL,{ headers: { Authorization: AuthStr } })
@@ -29,6 +30,8 @@ export const RequireAuth = ({children}) =>{
             .finally(() => {
                 setLoading(false);
             });
+        }else{
+            initialRender.current = true
         }
         
         }
