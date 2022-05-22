@@ -7,14 +7,15 @@ const API_URL = "https://api.getcountapp.com/api/v1/users/me"
 
 export const RequireAuth = ({children}) =>{
     
-    const {setData} = useAuth();
+    const {setData,setLoading} = useAuth();
     const navigate = useNavigate();
 
     useEffect(()=>{
         let credentials = JSON.parse(localStorage.getItem("token"))
         const AuthStr = 'Bearer '.concat(credentials)
-
+        
         if(credentials){
+            setLoading(true)
             axios
             .get(API_URL,{ headers: { Authorization: AuthStr } })
             .then((response) => {
@@ -24,10 +25,13 @@ export const RequireAuth = ({children}) =>{
                 localStorage.clear()
                 navigate("/login")
             })
+            .finally(() => {
+                setLoading(false);
+            });
         }
         
         }
-    ,[setData,navigate])
+    ,[setData,navigate,setLoading])
 
     if(!JSON.parse(localStorage.getItem("token"))){
         return <Navigate to="/login" />
